@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&display=swap');
 
+:root {
+  --textWhite: #ffffff;
+  --textColor: #3a423f;
+  --navBgColor: #2b2727;
+  --bgColor: #86e8ff;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,4 +22,8 @@ body {
   font-size: 1.6rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
 }

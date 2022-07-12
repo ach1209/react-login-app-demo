@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 8rem;
+  padding: 0 3rem;
+  background-color: var(--navBgColor);
+}
+
+.navbar-title {
+  color: var(--textWhite);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.navbar-links {
+  list-style-type: none;
+  display: flex;
+}
+
+.navbar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 4rem;
+  padding: 0 1.5rem;
+  cursor: pointer;
+}
+
+.navbar-item:hover {
+  background-color: var(--bgColor);
+  border-radius: 5px;
+}
+
+.navbar-item:hover > a {
+  color: var(--textColor);
+}
+
+.navbar-item a {
+  color: var(--textWhite);
+}
