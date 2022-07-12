@@ -3,7 +3,7 @@ import styles from './Navbar.module.css'
 function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <h1 className={styles['navbar-title']}>Login React App</h1>
+      <span className={styles['navbar-title']}>Login React App</span>
       <ul className={styles['navbar-links']}>
         <li className={styles['navbar-item']}>
           <a href="/">Home</a>
