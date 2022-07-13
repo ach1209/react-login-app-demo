@@ -1,0 +1,13 @@
+.greeting-message {
+  width: 60%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--bgColor2);
+  border-radius: 5px;
+}
+
+.greeting-heading {
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+}
