@@ -1,6 +1,7 @@
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
-import GreetingCard from './components/Greeting/GreetingCard'
-import GreetingHeader from './components/Greeting/GreetingHeader'
+import HomeView from './views/HomeView'
+import LoginView from './views/LoginView'
 import './App.css'
 
 function App() {
@@ -8,10 +9,10 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="content">
-        <GreetingCard>
-          <GreetingHeader message="Welcome" user="User" />
-          <p>To access the content, please log in to your account. If you don't have an account created, you can register <a href="/">here</a>.</p>
-        </GreetingCard>
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route path="/login" element={<LoginView />} />
+        </Routes>
       </div>
     </div>
   )

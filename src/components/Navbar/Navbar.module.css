@@ -13,8 +13,7 @@
   font-weight: 400;
 }
 
-.navbar-links {
-  list-style-type: none;
+.navbar-menu {
   display: flex;
 }
 
@@ -25,18 +24,12 @@
   width: 10rem;
   height: 4rem;
   padding: 0 1.5rem;
+  color: var(--textWhite);
   cursor: pointer;
 }
 
 .navbar-item:hover {
+  color: var(--textColor);
   background-color: var(--bgColor);
   border-radius: 5px;
-}
-
-.navbar-item:hover > a {
-  color: var(--textColor);
-}
-
-.navbar-item a {
-  color: var(--textWhite);
 }
