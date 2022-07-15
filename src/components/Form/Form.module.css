@@ -1,0 +1,15 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 4rem auto;
+}
+
+input {
+  height: 4rem;
+  margin-bottom: 2rem;
+  padding: 0 1.2rem;
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  font-size: 1.8rem;
+}

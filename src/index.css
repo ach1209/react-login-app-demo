@@ -7,6 +7,7 @@
   --navBgColor: #2b2727;
   --bgColor: #86e8ff;
   --bgColor2: #c4f2fd;
+  --borderColor: #b5c1c4;
 }
 
 * {
@@ -22,6 +23,7 @@ html {
 body {
   font-family: 'Rubik', sans-serif;
   font-size: 1.6rem;
+  color: var(--textColor);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,4 +31,8 @@ body {
 a {
   color: var(--linkColor);
   text-decoration: none;
+}
+
+.text-center {
+  text-align: center;
 }
