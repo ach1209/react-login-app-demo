@@ -7,7 +7,11 @@
   --navBgColor: #2b2727;
   --bgColor: #86e8ff;
   --bgColor2: #c4f2fd;
+  --statusColor: #e9fff9;
+  --statusColor2: #ffede9;
   --borderColor: #b5c1c4;
+  --borderStatus: #73ce92;
+  --borderStatus2: #ce7373;
 }
 
 * {

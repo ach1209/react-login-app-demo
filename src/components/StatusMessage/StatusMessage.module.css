@@ -1,0 +1,18 @@
+.status-message {
+  width: 60%;
+  height: 6rem;
+  line-height: 6rem;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+  border-radius: 5px;
+}
+
+.status-message--approved {
+  background-color: var(--statusColor);
+  border: 1px solid var(--borderStatus);
+}
+
+.status-message--rejected {
+  background-color: var(--statusColor2);
+  border: 1px solid var(--borderStatus2);
+}
