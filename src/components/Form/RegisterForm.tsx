@@ -3,8 +3,10 @@ import styles from './Form.module.css'
 type FormProps = {
   action: (e: React.FormEvent<HTMLFormElement>) => void
   emailValue: string;
+  userValue: string;
   passwordValue: string;
   emailHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  userHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   passwordHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children: React.ReactNode;
 }
@@ -22,8 +24,12 @@ function RegisterForm(props: FormProps) {
         onChange={props.emailHandler}
       />
 
-      {/* <label htmlFor="username">Username:</label>
-      <input type="text" name="username" id="username" /> */}
+      <label htmlFor="username">Username:</label>
+      <input 
+        type="text" name="username" id="username" 
+        value={props.userValue}
+        onChange={props.userHandler}
+      />
 
       <label htmlFor="password">Password:</label>
       <input 
