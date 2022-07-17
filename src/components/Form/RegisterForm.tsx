@@ -1,13 +1,13 @@
 import styles from './Form.module.css'
 
 type FormProps = {
-  action: (e: React.FormEvent<HTMLFormElement>) => void
-  emailValue: string;
-  userValue: string;
-  passwordValue: string;
-  emailHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  userHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  passwordHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  action: (e: React.FormEvent<HTMLFormElement>) => void;
+  values: {
+    email: string;
+    userName: string;
+    password: string;
+  }
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children: React.ReactNode;
 }
 
@@ -20,22 +20,22 @@ function RegisterForm(props: FormProps) {
       <label htmlFor="email">Email:</label>
       <input 
         type="email" name="email" id="email" 
-        value={props.emailValue} 
-        onChange={props.emailHandler}
+        value={props.values.email} 
+        onChange={props.changeHandler}
       />
 
       <label htmlFor="username">Username:</label>
       <input 
-        type="text" name="username" id="username" 
-        value={props.userValue}
-        onChange={props.userHandler}
+        type="text" name="userName" id="username" 
+        value={props.values.userName}
+        onChange={props.changeHandler}
       />
 
       <label htmlFor="password">Password:</label>
       <input 
         type="password" name="password" id="password" 
-        value={props.passwordValue}
-        onChange={props.passwordHandler}
+        value={props.values.password}
+        onChange={props.changeHandler}
       />
       
       {props.children}

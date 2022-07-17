@@ -5,9 +5,11 @@ import RegisterForm from "../components/Form/RegisterForm"
 import Button from "../components/Button/Button"
 
 function RegisterView() {
-  const [email, setEmail] = useState('')
-  const [userName, setUserName] = useState('')
-  const [password, setPassword] = useState('')
+  const [values, setValues] = useState({
+    email: '',
+    userName: '',
+    password: ''
+  })
   const [isCreated, setIsCreated] = useState(false)
   const [statusMessage, setStatusMessage] = useState('')
   const [status, setStatus] = useState('')
@@ -15,7 +17,7 @@ function RegisterView() {
 
   function createAccount(e: React.SyntheticEvent) {
     e.preventDefault()
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, values.email, values.password)
       /**
        * userCredential returns an object from firebase
        */
@@ -24,7 +26,7 @@ function RegisterView() {
         /**
          * Add username to credentials
          */
-        updateProfile(userCredential.user, { displayName: userName })
+        updateProfile(userCredential.user, { displayName: values.userName })
       })
       .catch(err => {
         switch (err.code) {
@@ -50,22 +52,20 @@ function RegisterView() {
     resetFields()
   }
 
-  function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(e.target.value)
-  }
-
-  function handleUsernameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setUserName(e.target.value)
-  }
-
-  function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setPassword(e.target.value)
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value
+    })
   }
 
   function resetFields() {
-    setEmail('')
-    setUserName('')
-    setPassword('')
+    setValues({
+      email: '',
+      userName: '',
+      password: ''
+    })
   }
 
   function handleStatusDetails(msg: string, status: 'approved' | 'rejected') {
@@ -80,12 +80,8 @@ function RegisterView() {
       { isCreated && <StatusMessage message={statusMessage} status={status} /> }
       <RegisterForm
         action={createAccount}
-        emailValue={email}
-        userValue={userName}
-        passwordValue={password}
-        emailHandler={handleEmailChange}
-        userHandler={handleUsernameChange}
-        passwordHandler={handlePasswordChange}
+        values={values}
+        changeHandler={handleInputChange}
       >
         <Button>Submit</Button>
       </RegisterForm>
