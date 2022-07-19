@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { getAuth, updateProfile, createUserWithEmailAndPassword } from 'firebase/auth'
 import StatusMessage from '../components/StatusMessage/StatusMessage'
-import RegisterForm from "../components/Form/RegisterForm"
+import AccountForm from "../components/Form/AccountForm"
 import Button from "../components/Button/Button"
 
 function RegisterView() {
@@ -78,13 +78,14 @@ function RegisterView() {
     <>
       <h1 className="text-center">Create Your Account</h1>
       { isCreated && <StatusMessage message={statusMessage} status={status} /> }
-      <RegisterForm
+      <AccountForm
         action={createAccount}
         values={values}
         changeHandler={handleInputChange}
+        requireUserName={true}
       >
         <Button>Submit</Button>
-      </RegisterForm>
+      </AccountForm>
     </>
   )
 }

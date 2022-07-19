@@ -2,19 +2,22 @@ import styles from './Form.module.css'
 
 type FormProps = {
   action: (e: React.FormEvent<HTMLFormElement>) => void;
+  requireUserName: boolean;
   values: {
     email: string;
-    userName: string;
+    userName?: string;
     password: string;
   }
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children: React.ReactNode;
 }
 
-function RegisterForm(props: FormProps) {
+function AccountForm(props: FormProps) {
+  const isUserRequired = props.requireUserName
+
   return (
     <form 
-      className={styles['register-form']}
+      className={styles['account-form']}
       onSubmit={props.action}
     >
       <label htmlFor="email">Email:</label>
@@ -24,12 +27,16 @@ function RegisterForm(props: FormProps) {
         onChange={props.changeHandler}
       />
 
-      <label htmlFor="username">Username:</label>
-      <input 
-        type="text" name="userName" id="username" 
-        value={props.values.userName}
-        onChange={props.changeHandler}
-      />
+      { isUserRequired && 
+        <>
+          <label htmlFor="username">Username:</label>
+          <input 
+            type="text" name="userName" id="username" 
+            value={props.values.userName}
+            onChange={props.changeHandler}
+          />     
+        </>
+      }
 
       <label htmlFor="password">Password:</label>
       <input 
@@ -43,4 +50,4 @@ function RegisterForm(props: FormProps) {
   )
 }
 
-export default RegisterForm
+export default AccountForm
