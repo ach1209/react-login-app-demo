@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { getAuth, updateProfile, createUserWithEmailAndPassword } from 'firebase/auth'
+import useHandleErrorCodes from '../hooks/useHandleErrorCodes'
 import StatusMessage from '../components/StatusMessage/StatusMessage'
 import AccountForm from "../components/Form/AccountForm"
 import Button from "../components/Button/Button"
@@ -10,9 +11,9 @@ function RegisterView() {
     userName: '',
     password: ''
   })
-  const [isCreated, setIsCreated] = useState(false)
-  const [statusMessage, setStatusMessage] = useState('')
-  const [status, setStatus] = useState('')
+  const [showMsg, setShowMsg] = useState(false)
+  const [errorCode, setErrorCode] = useState('')
+  const { message, status } = useHandleErrorCodes(errorCode)
   const auth = getAuth()
 
   function createAccount(e: React.SyntheticEvent) {
@@ -22,33 +23,21 @@ function RegisterView() {
        * userCredential returns an object from firebase
        */
       .then(userCredential => {
-        handleStatusDetails('Your account has been created successfully', 'approved')
+        setShowMsg(true)
         /**
          * Add username to credentials
          */
         updateProfile(userCredential.user, { displayName: values.userName })
       })
       .catch(err => {
-        switch (err.code) {
-          case 'auth/email-already-in-use':
-            handleStatusDetails('The email is already in use', 'rejected')
-            break;
-          case 'auth/invalid-email':
-            handleStatusDetails('The email you entered is invalid', 'rejected')
-            break;
-          case 'auth/weak-password':
-            handleStatusDetails('Your password strength is weak', 'rejected')
-            break;
-          default:
-            handleStatusDetails('Something went wrong with creating your account', 'rejected')
-            break;
-        }
+        setShowMsg(true)
+        setErrorCode(err.code)
       })
 
     /**
      * Hide the status message after 6 seconds
      */
-    setTimeout(() => setIsCreated(false), 6000)
+    setTimeout(() => setShowMsg(false), 6000)
     resetFields()
   }
 
@@ -68,16 +57,10 @@ function RegisterView() {
     })
   }
 
-  function handleStatusDetails(msg: string, status: 'approved' | 'rejected') {
-    setStatusMessage(msg)
-    setStatus(status)
-    setIsCreated(true)
-  }
-
   return (
     <>
       <h1 className="text-center">Create Your Account</h1>
-      { isCreated && <StatusMessage message={statusMessage} status={status} /> }
+      { showMsg && <StatusMessage message={message} status={status} /> }
       <AccountForm
         action={createAccount}
         values={values}

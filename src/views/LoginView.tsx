@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import useHandleErrorCodes from "../hooks/useHandleErrorCodes"
 import AccountForm from "../components/Form/AccountForm"
 import Button from "../components/Button/Button"
 import StatusMessage from "../components/StatusMessage/StatusMessage"
@@ -10,8 +11,9 @@ function LoginView() {
     email: '',
     password: ''
   })
-  const [message, setMessage] = useState('')
-  const [loginError, setLoginError] = useState(false)
+  const [errorCode, setErrorCode] = useState('')
+  const [showError, setShowError] = useState(false)
+  const { message, status } = useHandleErrorCodes(errorCode)
   const auth = getAuth()
   const navigate = useNavigate()
 
@@ -22,18 +24,8 @@ function LoginView() {
         auth.onAuthStateChanged(user => user && navigate('/profile', { replace: true }))
       })
       .catch(err => {
-        setLoginError(true)
-        switch(err.code) {
-          case 'auth/invalid-email':
-            setMessage('Please enter a valid email address')
-            break;
-          case 'auth/wrong-password':
-            setMessage('The password you entered was incorrect')
-            break;
-          default:
-            setMessage('The required fields cannot be left blank')
-            break; 
-        }
+        setShowError(true)
+        setErrorCode(err.code)
       })
   }
 
@@ -48,7 +40,7 @@ function LoginView() {
   return (
     <>
       <h1 className="text-center">Login to Your Account</h1>
-      { loginError && <StatusMessage message={message} status="rejected" />}
+      { showError && <StatusMessage message={message} status={status} />}
       <AccountForm
         action={signIntoAccount}
         values={values}
