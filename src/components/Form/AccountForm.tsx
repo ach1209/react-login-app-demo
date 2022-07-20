@@ -25,6 +25,7 @@ function AccountForm(props: FormProps) {
         type="email" name="email" id="email" 
         value={props.values.email} 
         onChange={props.changeHandler}
+        required
       />
 
       { isUserRequired && 
@@ -34,6 +35,7 @@ function AccountForm(props: FormProps) {
             type="text" name="userName" id="username" 
             value={props.values.userName}
             onChange={props.changeHandler}
+            required
           />     
         </>
       }
@@ -43,6 +45,7 @@ function AccountForm(props: FormProps) {
         type="password" name="password" id="password" 
         value={props.values.password}
         onChange={props.changeHandler}
+        required
       />
       
       {props.children}
