@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { getAuth } from 'firebase/auth'
 import { Link } from 'react-router-dom'
+import AccountStatusContext from '../../context/AccountStatusContext'
 import styles from './Navbar.module.css'
 
 function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { isLoggedIn, setIsLoggedIn } = useContext(AccountStatusContext)
   const auth = getAuth()
 
   function logoutOfAccount() {
     auth.signOut()
-    setIsLoggedIn(false)
+    setIsLoggedIn?.(false)
   }
 
   return (
