@@ -1,11 +1,11 @@
-import { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import useHandleErrorCodes from "../hooks/useHandleErrorCodes"
-import AccountStatusContext from "../context/AccountStatusContext"
-import AccountForm from "../components/Form/AccountForm"
-import Button from "../components/Button/Button"
-import StatusMessage from "../components/StatusMessage/StatusMessage"
+import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import useHandleErrorCodes from '../hooks/useHandleErrorCodes'
+import AccountStatusContext from '../context/AccountStatusContext'
+import AccountForm from '../components/Form/AccountForm'
+import Button from '../components/Button/Button'
+import StatusMessage from '../components/StatusMessage/StatusMessage'
 
 function LoginView() {
   const [values, setValues] = useState({
@@ -31,7 +31,7 @@ function LoginView() {
            * The username field is required.
            */
           setUserName?.(user?.displayName!)
-          user && navigate('/profile', { replace: true })
+          user && navigate('/', { replace: true })
         })
       })
       .catch(err => {

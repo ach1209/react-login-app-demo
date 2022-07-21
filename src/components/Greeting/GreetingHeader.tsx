@@ -8,7 +8,7 @@ type GreetingHeaderProps = {
 function GreetingHeader(props: GreetingHeaderProps) {
   return (
     <h1 className={styles['greeting-heading']}>
-      {props.message} {props.user}!
+      {props.message} {props.user}
     </h1>
   )
 }

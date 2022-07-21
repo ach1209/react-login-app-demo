@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { getAuth, updateProfile, createUserWithEmailAndPassword } from 'firebase/auth'
 import useHandleErrorCodes from '../hooks/useHandleErrorCodes'
 import StatusMessage from '../components/StatusMessage/StatusMessage'
-import AccountForm from "../components/Form/AccountForm"
-import Button from "../components/Button/Button"
+import AccountForm from '../components/Form/AccountForm'
+import Button from '../components/Button/Button'
 
 function RegisterView() {
   const [values, setValues] = useState({

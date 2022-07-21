@@ -9,8 +9,7 @@ function Navbar() {
   const auth = getAuth()
 
   function logoutOfAccount() {
-    auth.signOut()
-    setIsLoggedIn?.(false)
+    auth.signOut().then(() => setIsLoggedIn?.(false))
   }
 
   return (
@@ -18,12 +17,13 @@ function Navbar() {
       <span className={styles['navbar-title']}>Login React App</span>
       <nav className={styles['navbar-menu']}>
         <Link to="/" className={styles['navbar-item']}>Home</Link>
-        { !isLoggedIn && <Link to="/login" className={styles['navbar-item']}>Login</Link> }
-        { isLoggedIn && 
-          <span 
-            className={styles['navbar-item']} role="button"
-            onClick={logoutOfAccount}
-          >Logout</span>
+        { !isLoggedIn ? 
+            <Link to="/login" className={styles['navbar-item']}>Login</Link> 
+          :
+            <span 
+              className={styles['navbar-item']} role="button"
+              onClick={logoutOfAccount}
+            >Logout</span>
         }
       </nav>
     </div>

@@ -5,7 +5,6 @@ import Navbar from './components/Navbar/Navbar'
 import HomeView from './views/HomeView'
 import LoginView from './views/LoginView'
 import RegisterView from './views/RegisterView'
-import ProfileView from './views/ProfileView'
 import './App.css'
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
             <Route path="/" element={<HomeView />} />
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegisterView />} />
-            <Route path="/profile" element={<ProfileView />} />
           </Routes>
         </div>
       </div>
